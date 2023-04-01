@@ -1,4 +1,4 @@
-#!/bin/bash -xe
+#!/bin/bash -xe 
 
 # Copyright 2017 Google Inc.
 #

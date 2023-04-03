@@ -1,3 +1,25 @@
+provider "azurerm" {
+  features {}
+}
+
+module "multi_region_aks" {
+  source = "./multi-region-aks"
+
+  resource_group_name = "your_resource_group_name"
+  cluster_name        = "your_cluster_name"
+  locations           = ["eastus", "westus"]
+  node_count          = 3
+  vm_size             = "Standard_D2_v2"
+}
+
+output "kube_config" {
+  value     = module.multi_region_aks.kube_config
+  sensitive = true
+}
+
+output "node_pool_ids" {
+  value = module.multi_region_aks.node_pool_ids
+}
 locals {
   node_pool_defaults = {
     vm_size      = var.vm_size
